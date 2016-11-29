@@ -1,0 +1,5 @@
+- O projeto foi feito no eclipse utilizando maven.
+
+- Todos os arquivos necessários para teste estão inclusos no projeto.
+
+- Para verificar o resultado esperado rode a classe main.
