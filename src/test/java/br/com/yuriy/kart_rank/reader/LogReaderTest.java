@@ -1,32 +1,46 @@
-package br.com.yuriy.kart_rank;
+package br.com.yuriy.kart_rank.reader;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
-import br.com.yuriy.kart_rank.reader.LogReader;
-import br.com.yuriy.kart_rank.reader.LogReaderImp;
+import br.com.yuriy.kart_rank.exception.LogFileNotFoundException;
 
 public class LogReaderTest {
+	private File logFile;
+
+	@Before
+	public void initialize() throws FileNotFoundException {
+		logFile = createLogFile();
+	}
 
 	@Test
-	public void loadLogFile() throws FileNotFoundException {
-		File logFile = createLogFile();
-
+	public void loadLogFile() {
 		LogReader reader = new LogReaderImp(logFile);
-		
+
 		assertTrue(reader.isLoaded());
-		
+
+	}
+
+	@Test(expected = LogFileNotFoundException.class)
+	public void inexistentLogFile() throws IOException {
+		File emptyLogFile = new File("inexistent.txt");
+
+		LogReader reader = new LogReaderImp(emptyLogFile);
 	}
 
 	@Test
 	public void findAllTurns() throws FileNotFoundException {
-		File logFile = createLogFile();		
 		LogReaderImp reader = new LogReaderImp(logFile);
-		
+
 		assertEquals(6, reader.findAllTurns().size());
 	}
 
@@ -40,9 +54,14 @@ public class LogReaderTest {
 		print.println("23:50:11.447      038 – F.MASSA             2     1:03.170            44,053");
 		print.println("23:51:14.216      038 – F.MASSA             3     1:02.769            44,334");
 		print.println("23:52:17.003      038 – F.MASS              4     1:02.787            44,321");
-		
+
 		print.close();
-		
+
 		return logFile;
+	}
+
+	@After
+	public void dispose() {
+		logFile.delete();
 	}
 }

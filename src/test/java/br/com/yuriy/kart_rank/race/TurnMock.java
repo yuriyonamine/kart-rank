@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalTime;
 
-public class TurnImp implements Turn {
+import br.com.yuriy.kart_rank.race.Pilot;
+import br.com.yuriy.kart_rank.race.Turn;
+
+public class TurnMock implements Turn {
 
 	private LocalTime turnHour;
 	private Pilot pilot;
@@ -32,32 +35,34 @@ public class TurnImp implements Turn {
 		this.turnSpeedAverage = turnAverage;
 	}
 
-	public BigDecimal getTurnSpeedAverage() {
-		return turnSpeedAverage;
-	}
-
+	@Override
 	public LocalTime getTurnHour() {
-		return turnHour;
+		return this.turnHour;
 	}
 
+	@Override
 	public Pilot getPilot() {
-		return pilot;
+		return this.pilot;
 	}
 
+	@Override
+	public int getPilotNumber() {
+		return this.getPilotNumber();
+	}
+
+	@Override
 	public int getNumber() {
 		return this.number;
 	}
 
+	@Override
 	public Duration getDuration() {
-		return duration;
+		return this.duration;
 	}
 
-	public int getPilotNumber() {
-		return pilot.getNumber();
-	}
-
-	public String getName() {
-		return pilot.getName();
+	@Override
+	public BigDecimal getTurnSpeedAverage() {
+		return this.turnSpeedAverage;
 	}
 
 	@Override
@@ -94,7 +99,7 @@ public class TurnImp implements Turn {
 		} else if (!pilot.equals(other.getPilot()))
 			return false;
 		if (turnHour == null) {
-			if (other.getTurnHour() != null)
+			if (other.getTurnHour()!= null)
 				return false;
 		} else if (!turnHour.equals(other.getTurnHour()))
 			return false;

@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import br.com.yuriy.kart_rank.exception.LogFileNotFoundException;
 import br.com.yuriy.kart_rank.race.Pilot;
 import br.com.yuriy.kart_rank.race.PilotImp;
 import br.com.yuriy.kart_rank.race.Turn;
@@ -48,10 +49,7 @@ public class LogReaderImp implements LogReader{
 			}
 
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new LogFileNotFoundException("O arquivo de log não foi encontrado");
 		}
 
 	}

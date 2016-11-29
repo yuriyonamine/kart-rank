@@ -1,19 +1,23 @@
 package br.com.yuriy.kart_rank.race;
 
-public class PilotImp implements Pilot{
+import br.com.yuriy.kart_rank.race.Pilot;
 
-	private int number;
+public class PilotMock implements Pilot {
+
 	private String name;
+	private int number;
 
-	public PilotImp(int pilotNumber, String pilotName) {
-		this.number = pilotNumber;
-		this.name = pilotName;
+	public PilotMock(int number, String name) {
+		this.number = number;
+		this.name = name;
 	}
 
+	@Override
 	public int getNumber() {
 		return number;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -39,5 +43,6 @@ public class PilotImp implements Pilot{
 			return false;
 		return true;
 	}
+	
 	
 }

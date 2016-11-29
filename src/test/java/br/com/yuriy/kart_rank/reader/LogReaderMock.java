@@ -1,4 +1,4 @@
-package br.com.yuriy.kart_rank;
+package br.com.yuriy.kart_rank.reader;
 
 import java.util.List;
 
